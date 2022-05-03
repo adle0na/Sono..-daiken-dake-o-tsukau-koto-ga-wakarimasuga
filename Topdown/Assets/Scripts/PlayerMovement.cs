@@ -9,7 +9,7 @@ public class PlayerMovement : MonoBehaviour
     public float speed;
 
     private Rigidbody playerRb;
-    public Animator anim;
+    public PlayerAnimator _playerAnimator;
     private Vector3 moveVec;
     private CharacterController _playerController;
 
@@ -18,7 +18,7 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         playerRb = GetComponent<Rigidbody>();
-        anim = GetComponent<Animator>();
+        _playerAnimator = GetComponent<PlayerAnimator>();
         _playerController = GetComponent<CharacterController>();
     }
 
@@ -26,7 +26,8 @@ public class PlayerMovement : MonoBehaviour
     {
         float x = joy.Horizontal;
         float z = joy.Vertical;
-        
+
+        _playerAnimator.OnMovement(x, z);
         moveVec = new Vector3(x, 0, z) * speed * Time.deltaTime;
         _playerController.Move(moveVec);
 
@@ -36,6 +37,7 @@ public class PlayerMovement : MonoBehaviour
 
         playerRb.velocity = new Vector3(joy.Horizontal * speed, playerRb.velocity.y, joy.Vertical * speed);
 
+        /*
         if (joy.Horizontal != 0f || joy.Vertical != 0f)
         {
             anim.SetBool("IsRun", true);
@@ -45,7 +47,7 @@ public class PlayerMovement : MonoBehaviour
         {
             anim.SetBool("IsRun",false);
         }
-
+        */
     }
     
     
