@@ -13,13 +13,6 @@ public class VariableJoystick : Joystick
 
     private Vector2 fixedPosition = Vector2.zero;
 
-    private PlayerMovement _playerMovement;
-
-    private void Awake()
-    {
-        _playerMovement = GetComponent<PlayerMovement>();
-    }
-
     public void SetMode(JoystickType joystickType)
     {
         this.joystickType = joystickType;
@@ -63,13 +56,7 @@ public class VariableJoystick : Joystick
         {
             Vector2 difference = normalised * (magnitude - moveThreshold) * radius;
             background.anchoredPosition += difference;
-            _playerMovement.runChecking = true;
         }
-        else
-        {
-            _playerMovement.runChecking = false;
-        }
-        base.HandleInput(magnitude, normalised, radius, cam);
     }
     
     

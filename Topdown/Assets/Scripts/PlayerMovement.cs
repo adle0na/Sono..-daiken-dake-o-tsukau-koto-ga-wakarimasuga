@@ -38,27 +38,16 @@ public class PlayerMovement : MonoBehaviour
 
         if (joy.Horizontal != 0f || joy.Vertical != 0f)
         {
-            anim.SetBool("IsWalk", true);
-            transform.rotation = Quaternion.LookRotation(playerRb.velocity);
-            StartCoroutine(RunCheck());
-        }
-        else
-        {
-            anim.SetBool("IsWalk",false);
-        }
-    }
-    
-    IEnumerator RunCheck()
-    {
-        if (runChecking == true)
-        {
             anim.SetBool("IsRun", true);
+            transform.rotation = Quaternion.LookRotation(playerRb.velocity);
         }
         else
         {
-            anim.SetBool("IsRun", false);
+            anim.SetBool("IsRun",false);
         }
-        yield break;
+
     }
     
+    
+
 }
